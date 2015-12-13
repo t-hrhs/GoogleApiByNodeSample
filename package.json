@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "google-auth-library": "^0.9.7",
     "googleapis": "^2.1.6"
   }
 }
