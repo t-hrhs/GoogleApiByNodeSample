@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "google-auth-library": "^0.9.7",
+    "google-spreadsheet": "^1.0.1",
     "googleapis": "^2.1.6"
   }
 }
