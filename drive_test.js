@@ -110,34 +110,16 @@ function downloadFile(auth,file, callback) {
   if (file.downloadUrl) {
     var accessToken = auth.credentials.access_token;
     var xhr = new XMLHttpRequest();
-    xhr.responseType = "blob";
-    console.log('START xhr')
     xhr.open('GET', file.downloadUrl);
-    console.log(accessToken);
     xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
     xhr.onload = function() {
       callback(xhr.responseText);
     };
-    /*xhr.onload = function() {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          console.log('SUCCESS xhr');
-          fs.writeFile('./hoge.txt', xhr.response);
-          callback.apply(xhr.response);
-        } else {
-          console.error(xhr.statusText);
-        }
-      } else {
-        console.log("test");
-      }
-    };*/
     xhr.onerror = function() {
-      console.log('ERROR xhr');
       callback(null);
     };
     xhr.send();
   } else {
-    console.log('ERROR xhr');
     callback(null);
   }
 }
@@ -167,7 +149,6 @@ function downloadFiles(auth) {
     },
     function(response, callback) {
       var fileID = response[0];
-      //console.log(fileID);
       service.files.get({
         'fileId': fileID,
       }, function (err, response) {
@@ -177,7 +158,7 @@ function downloadFiles(auth) {
     function(response, callback) {
       // file object
       downloadFile(auth, response, function (response){
-        fs.writeFile('./hoge.tsv', response);
+        fs.writeFile('./download_files/hoge.tsv', response);
       });
     }
   ], function(err, response) {
