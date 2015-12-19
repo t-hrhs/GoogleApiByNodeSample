@@ -1,2 +1,4 @@
 node_modules/
 user_info/
+donwload_files/*
+!download_files
